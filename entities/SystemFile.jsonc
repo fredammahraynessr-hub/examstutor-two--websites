@@ -1,0 +1,74 @@
+{
+  "name": "SystemFile",
+  "type": "object",
+  "properties": {
+    "file_name": {
+      "type": "string"
+    },
+    "file_path": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "file_type": {
+      "type": "string",
+      "enum": [
+        "question_bank",
+        "config",
+        "note",
+        "document",
+        "log"
+      ],
+      "default": "document"
+    },
+    "version": {
+      "type": "number",
+      "default": 1
+    },
+    "checksum": {
+      "type": "string"
+    },
+    "size_bytes": {
+      "type": "number",
+      "default": 0
+    },
+    "is_locked": {
+      "type": "boolean",
+      "default": false
+    },
+    "last_saved_by": {
+      "type": "string"
+    },
+    "is_deleted": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "file_name",
+    "file_path"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

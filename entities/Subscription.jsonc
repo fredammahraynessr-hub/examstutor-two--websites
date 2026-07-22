@@ -1,0 +1,91 @@
+{
+  "name": "Subscription",
+  "type": "object",
+  "properties": {
+    "plan": {
+      "type": "string",
+      "enum": [
+        "free",
+        "basic",
+        "premium"
+      ],
+      "default": "free"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "active",
+        "expired",
+        "cancelled"
+      ],
+      "default": "pending"
+    },
+    "started_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "questions_remaining": {
+      "type": "number",
+      "default": 25
+    },
+    "checkout_id": {
+      "type": "string"
+    },
+    "wix_subscription_id": {
+      "type": "string"
+    },
+    "user_email": {
+      "type": "string"
+    },
+    "payment_reference": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "plan",
+    "status"
+  ],
+  "rls": {
+    "create": {
+      "created_by_id": "{{user.id}}"
+    },
+    "read": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "update": {
+      "$or": [
+        {
+          "created_by_id": "{{user.id}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        }
+      ]
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}

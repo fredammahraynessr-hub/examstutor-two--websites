@@ -1,0 +1,83 @@
+{
+  "name": "Question",
+  "type": "object",
+  "properties": {
+    "subject": {
+      "type": "string",
+      "enum": [
+        "Mathematics",
+        "English Language",
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "Economics",
+        "Government",
+        "Geography",
+        "Civic Education",
+        "Further Mathematics"
+      ]
+    },
+    "topic": {
+      "type": "string"
+    },
+    "question_text": {
+      "type": "string"
+    },
+    "options": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "correct_option": {
+      "type": "number"
+    },
+    "explanation": {
+      "type": "string"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "default": "medium"
+    },
+    "exam_year": {
+      "type": "number"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 1000
+    }
+  },
+  "required": [
+    "subject",
+    "question_text",
+    "options",
+    "correct_option"
+  ],
+  "rls": {
+    "create": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "read": null,
+    "update": {
+      "user_condition": {
+        "role": "admin"
+      }
+    },
+    "delete": {
+      "user_condition": {
+        "role": "admin"
+      }
+    }
+  }
+}
